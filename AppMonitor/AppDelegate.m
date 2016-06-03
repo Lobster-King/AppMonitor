@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AMThreadPool.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[AMThreadPool shareInstance] executeTask:^{
+        for (int i = 0; i<10000; i++) {
+            NSLog(@"hah%d",i);
+        }
+    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
+        
+    }];
     return YES;
 }
 
