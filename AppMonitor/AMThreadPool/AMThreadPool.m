@@ -12,42 +12,46 @@
 static AMThreadPool *threadPoolInstance = nil;
 static NSInteger const maxMutex = 5;
 static NSString *const TaskErrorDomain  = @"com.taskerror.domain";
-static NSString *const kAMPersistentKey = @"AMPersistentONE";
-static NSString *const kAMNonePersistentKey = @"AMPersistentTWO";
+static NSString *const kAMPersistentKey = @"kAMPersistentKey";
+static NSString *const kAMNonePersistentKey = @"kAMNonePersistentKey";
 
 typedef NS_ENUM(NSInteger,AMThreadPolicy){
     AMPersistent        = 0,   /*常驻线程never die*/
     AMNonePersistent    = 1,   /*非常驻线程*/
 };/*线程策略*/
 
+/////////////////////////////////////////////////////////////////////
 @interface AMThreadItem : NSObject
 
-@property (nonatomic,copy)NSString *threadId;
-@property (nonatomic,strong)NSThread *threadObj;
-@property (nonatomic,assign)AMThreadPolicy policy;
+@property (nonatomic,copy)NSString *threadId;/*线程Id*/
+@property (nonatomic,strong)NSThread *threadObj;/*线程*/
+@property (nonatomic,assign)AMThreadPolicy policy;/*线程类型*/
+@property (nonatomic,assign)BOOL idleCondition;/*是否空闲状态*/
 
 @end
 
 @implementation AMThreadItem
 @end
 
+/////////////////////////////////////////////////////////////////////
 @interface AMTaskItem : NSObject
 
-@property (nonatomic,copy)NSString *taskId;
-@property (nonatomic,copy)void(^task) ();
-@property (nonatomic,copy)AMThreadTaskBlock taskBlock;
-@property (nonatomic,assign)AMThreadTaskStatus status;
-@property (nonatomic,assign)AMTaskPriority policy;
+@property (nonatomic,copy)NSString *taskId;/*任务Id*/
+@property (nonatomic,copy)void(^task) ();/*任务*/
+@property (nonatomic,copy)AMThreadTaskBlock taskBlock;/*call back*/
+@property (nonatomic,assign)AMThreadTaskStatus status;/*任务执行状态*/
+@property (nonatomic,assign)AMTaskPriority policy;/*任务优先级*/
 
 @end
 
 @implementation AMTaskItem
 @end
 
+/////////////////////////////////////////////////////////////////////
 @interface AMThreadPool ()
 
-@property (nonatomic,retain)NSMutableDictionary *pool;
-@property (nonatomic,retain)NSMutableDictionary *taskPool;
+@property (nonatomic,retain)NSMutableDictionary *pool;/*线程池*/
+@property (nonatomic,retain)NSMutableDictionary *taskPool;/*任务池*/
 @property (nonatomic,strong)dispatch_semaphore_t semaphore;/*信号量*/
 
 @end
@@ -62,11 +66,8 @@ typedef NS_ENUM(NSInteger,AMThreadPolicy){
     item.policy = priority;
     [_taskPool setObject:item forKey:identity];
     
-    
-    item.taskBlock(AMThreadPoolWaitingMutex);
-    dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
-    AMThreadItem *threadItem = [_pool objectForKey:kAMPersistentKey];
-    [self performSelector:@selector(executeTask:) onThread:threadItem.threadObj withObject:item waitUntilDone:NO];
+    AMThreadItem *threadItem = idleConditionThreadItem();
+    [self performSelector:@selector(executeTask:) onThread:threadItem.threadObj withObject:@[item,threadItem] waitUntilDone:NO];
 }
 
 - (void)removeTaskWithId:(NSString *)identity withError:(NSError **)error{
@@ -76,49 +77,59 @@ typedef NS_ENUM(NSInteger,AMThreadPolicy){
     else
         [_taskPool removeObjectForKey:identity];
 }
-
+/*获取空闲的线程，若没有达到maxMutex则去创建，并递归调用，直到返回空闲状态的线程*/
 static AMThreadItem * idleConditionThreadItem(){
-    
-    if (threadPoolInstance.pool.count <= maxMutex)
-        AMCreatePersistentThread();
     for (AMThreadItem *threadItem in [threadPoolInstance.pool allValues]) {
-        if(threadItem.threadObj.isFinished)
+        if(threadItem.idleCondition){
+            threadItem.idleCondition = NO;
             return threadItem;
-        break;
+            break;
+        }
     }
-    return nil;
+    if (threadPoolInstance.pool.count < maxMutex){
+        AMCreatePersistentThread();
+        return idleConditionThreadItem();
+    }
+    dispatch_semaphore_wait(threadPoolInstance.semaphore, DISPATCH_TIME_FOREVER);
+    return idleConditionThreadItem();
 }
-
+/*创建常驻线程*/
 static void AMCreatePersistentThread(){
+    static int random = 0;
     AMThreadItem *item = [AMThreadItem new];
-    item.threadId      = kAMPersistentKey;
+    item.threadId      = [NSString stringWithFormat:@"%@_%d",kAMPersistentKey,random++];
+    item.idleCondition = YES;
     item.policy        = AMPersistent;
     NSThread *thread   = [[NSThread alloc]initWithTarget:threadPoolInstance selector:@selector(amRunloopFire) object:nil];
+    thread.name        = item.threadId;
     item.threadObj = thread;
+    [threadPoolInstance.pool setObject:item forKey:item.threadId];
     [thread start];
-    [threadPoolInstance.pool setObject:item forKey:kAMPersistentKey];
-    dispatch_semaphore_signal(threadPoolInstance.semaphore);
 }
-
+/*创建非常驻线程*/
 static void AMCreateNonePersistentThread(){
+    static int random = 0;
     AMThreadItem *item = [AMThreadItem new];
-    item.threadId      = kAMNonePersistentKey;
+    item.threadId      = [NSString stringWithFormat:@"%@_%d",kAMNonePersistentKey,random++];
+    item.idleCondition = YES;
     item.policy        = AMNonePersistent;
     NSThread *thread   = [NSThread new];
     item.threadObj = thread;
     [thread start];
-    [threadPoolInstance.pool setObject:item forKey:kAMNonePersistentKey];
-    dispatch_semaphore_signal(threadPoolInstance.semaphore);
+    [threadPoolInstance.pool setObject:item forKey:item.threadId];
 }
 
-- (void)executeTask:(AMTaskItem *)taskItem{
+- (void)executeTask:(NSArray *)items{
+    
+    AMTaskItem *taskItem = items[0];
+    AMThreadItem*threadItem = items[1];
     taskItem.taskBlock(AMThreadPoolBeginExecuteTask);
     taskItem.task();
+    threadItem.idleCondition = YES;
     taskItem.taskBlock(AMThreadPoolEndExecuteTask);
     dispatch_semaphore_signal(self.semaphore);
 }
-
-
+/*添加一个mach端口的源，让thread不退出*/
 -(void)amRunloopFire{
     [[NSRunLoop currentRunLoop]addPort:[NSMachPort port] forMode:NSRunLoopCommonModes];
     [[NSRunLoop currentRunLoop] run];
@@ -139,7 +150,7 @@ static void AMCreateNonePersistentThread(){
         threadPoolInstance = [super allocWithZone:zone];
         threadPoolInstance.pool = [NSMutableDictionary dictionaryWithCapacity:maxMutex];
         threadPoolInstance.taskPool = [NSMutableDictionary new];
-        threadPoolInstance.semaphore= dispatch_semaphore_create(1);
+        threadPoolInstance.semaphore= dispatch_semaphore_create(0);
     });
     return threadPoolInstance;
 }
