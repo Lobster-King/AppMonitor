@@ -17,14 +17,28 @@ typedef NS_ENUM(NSInteger,AMThreadTaskStatus){
     AMThreadPoolTaskCanceled        = 3,/*取消任务执行（未开始的任务可取消）*/
 };/*任务状态机*/
 
+typedef NS_ENUM(NSInteger,AMTaskPriority) {
+    AMTaskPriorityDefault = 0,/*默认*/
+    AMTaskPriorityLow     = 1,/*低*/
+    AMTaskPriorityHigh    = 2,/*高*/
+};/*任务执行优先级*/
+
 typedef void (^AMThreadTaskBlock)(AMThreadTaskStatus status);
 
 @interface AMThreadPool : NSObject
 
 + (instancetype)shareInstance;
 
+- (void)executeTask:(void(^)())task
+             withId:(NSString *)identity
+           priority:(AMTaskPriority)priority
+         taskStatus:(AMThreadTaskBlock)status;
 
+- (void)removeTaskWithId:(NSString *)identity withError:(NSError **)error;
 
 @end
+
+
+
 
 NS_ASSUME_NONNULL_END
