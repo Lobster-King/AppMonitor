@@ -7,6 +7,7 @@
 //
 
 #import "AMThreadPool.h"
+#import "AMTest.h"
 
 static AMThreadPool *threadPoolInstance = nil;
 static const NSInteger maxMutex = 5;
@@ -42,6 +43,7 @@ typedef NS_ENUM(NSInteger,AMThreadPolicy){
     static dispatch_once_t onceToken = 0x00;
     dispatch_once(&onceToken, ^{
         threadPoolInstance = [self new];
+        [AMTest test];
     });
     return threadPoolInstance;
 }

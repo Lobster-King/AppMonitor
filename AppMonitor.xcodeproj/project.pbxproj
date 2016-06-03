@@ -16,6 +16,7 @@
 		644E5E4A1D0119860008DCCC /* AppMonitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E491D0119860008DCCC /* AppMonitorTests.m */; };
 		644E5E551D0119860008DCCC /* AppMonitorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E541D0119860008DCCC /* AppMonitorUITests.m */; };
 		644E5E721D0120B00008DCCC /* AMThreadPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E711D0120B00008DCCC /* AMThreadPool.m */; };
+		6BCA5EE21D015F1B00808A75 /* AMTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCA5EE11D015F1B00808A75 /* AMTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		644E5E561D0119860008DCCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		644E5E701D0120B00008DCCC /* AMThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMThreadPool.h; sourceTree = "<group>"; };
 		644E5E711D0120B00008DCCC /* AMThreadPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMThreadPool.m; sourceTree = "<group>"; };
+		6BCA5EE01D015F1B00808A75 /* AMTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTest.h; sourceTree = "<group>"; };
+		6BCA5EE11D015F1B00808A75 /* AMTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 			children = (
 				644E5E701D0120B00008DCCC /* AMThreadPool.h */,
 				644E5E711D0120B00008DCCC /* AMThreadPool.m */,
+				6BCA5EE01D015F1B00808A75 /* AMTest.h */,
+				6BCA5EE11D015F1B00808A75 /* AMTest.m */,
 			);
 			path = AMThreadPool;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				644E5E721D0120B00008DCCC /* AMThreadPool.m in Sources */,
 				644E5E341D0119860008DCCC /* AppDelegate.m in Sources */,
 				644E5E311D0119860008DCCC /* main.m in Sources */,
+				6BCA5EE21D015F1B00808A75 /* AMTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
