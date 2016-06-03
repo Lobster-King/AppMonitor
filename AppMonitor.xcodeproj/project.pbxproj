@@ -15,6 +15,7 @@
 		644E5E3F1D0119860008DCCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644E5E3D1D0119860008DCCC /* LaunchScreen.storyboard */; };
 		644E5E4A1D0119860008DCCC /* AppMonitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E491D0119860008DCCC /* AppMonitorTests.m */; };
 		644E5E551D0119860008DCCC /* AppMonitorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E541D0119860008DCCC /* AppMonitorUITests.m */; };
+		644E5E721D0120B00008DCCC /* AMThreadPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E711D0120B00008DCCC /* AMThreadPool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		644E5E501D0119860008DCCC /* AppMonitorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppMonitorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		644E5E541D0119860008DCCC /* AppMonitorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppMonitorUITests.m; sourceTree = "<group>"; };
 		644E5E561D0119860008DCCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		644E5E701D0120B00008DCCC /* AMThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMThreadPool.h; sourceTree = "<group>"; };
+		644E5E711D0120B00008DCCC /* AMThreadPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMThreadPool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 		644E5E631D011C8B0008DCCC /* AMThreadPool */ = {
 			isa = PBXGroup;
 			children = (
+				644E5E701D0120B00008DCCC /* AMThreadPool.h */,
+				644E5E711D0120B00008DCCC /* AMThreadPool.m */,
 			);
 			path = AMThreadPool;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				644E5E371D0119860008DCCC /* ViewController.m in Sources */,
+				644E5E721D0120B00008DCCC /* AMThreadPool.m in Sources */,
 				644E5E341D0119860008DCCC /* AppDelegate.m in Sources */,
 				644E5E311D0119860008DCCC /* main.m in Sources */,
 			);
@@ -576,6 +582,7 @@
 				644E5E5B1D0119860008DCCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		644E5E5C1D0119860008DCCC /* Build configuration list for PBXNativeTarget "AppMonitorTests" */ = {
 			isa = XCConfigurationList;
@@ -584,6 +591,7 @@
 				644E5E5E1D0119860008DCCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		644E5E5F1D0119860008DCCC /* Build configuration list for PBXNativeTarget "AppMonitorUITests" */ = {
 			isa = XCConfigurationList;
@@ -592,6 +600,7 @@
 				644E5E611D0119860008DCCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
