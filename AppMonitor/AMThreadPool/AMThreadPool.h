@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#ifdef __IPHONE_9_0
 NS_ASSUME_NONNULL_BEGIN
+#endif
 
 typedef NS_ENUM(NSInteger,AMThreadTaskStatus){
     AMThreadPoolWaitingMutex        = 0,/*等待signal*/
@@ -40,5 +41,8 @@ typedef void (^AMThreadTaskBlock)(AMThreadTaskStatus status);
 
 
 
-
+#ifdef __IPHONE_9_0
 NS_ASSUME_NONNULL_END
+#endif
+
+
