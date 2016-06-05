@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5337EA21-F88D-46B1-80F8-5C988091540A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>AppMonitor</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D9FA37F4C96911F63EF3DEC889D03B27B1071601</key>
+		<string>https://github.com/Lobster-King/AppMonitor.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>AppMonitor.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D9FA37F4C96911F63EF3DEC889D03B27B1071601</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Lobster-King/AppMonitor.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D9FA37F4C96911F63EF3DEC889D03B27B1071601</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D9FA37F4C96911F63EF3DEC889D03B27B1071601</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AppMonitor</string>
+		</dict>
+	</array>
+</dict>
+</plist>
