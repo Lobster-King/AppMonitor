@@ -90,6 +90,7 @@ static AMThreadItem * idleConditionThreadItem(){
         AMCreatePersistentThread();
         return idleConditionThreadItem();
     }
+#warning this code will stop the main thread
     dispatch_semaphore_wait(threadPoolInstance.semaphore, DISPATCH_TIME_FOREVER);
     return idleConditionThreadItem();
 }
@@ -123,10 +124,16 @@ static void AMCreateNonePersistentThread(){
     
     AMTaskItem *taskItem = items[0];
     AMThreadItem*threadItem = items[1];
-    taskItem.taskBlock(AMThreadPoolBeginExecuteTask);
-    taskItem.task();
+    if (taskItem.taskBlock) {
+        taskItem.taskBlock(AMThreadPoolBeginExecuteTask);
+    }
+    if (taskItem.task) {
+        taskItem.task();
+    }
     threadItem.idleCondition = YES;
-    taskItem.taskBlock(AMThreadPoolEndExecuteTask);
+    if (taskItem.taskBlock) {
+        taskItem.taskBlock(AMThreadPoolEndExecuteTask);
+    }
     dispatch_semaphore_signal(self.semaphore);
 }
 /*添加一个mach端口的源，让thread不退出*/

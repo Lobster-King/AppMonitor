@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AMThreadPool.h"
-
+#import "ViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -22,6 +22,7 @@
         for (int i = 0; i<10000; i++) {
             NSLog(@"任务一%d",i);
         }
+        
     } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
         
     }];
@@ -39,41 +40,42 @@
     } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
         
     }];
-    [[AMThreadPool shareInstance] executeTask:^{
-        for (int i = 0; i<10000; i++) {
-            NSLog(@"任务四%d",i);
-        }
-    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
-        
-    }];
-    [[AMThreadPool shareInstance] executeTask:^{
-        for (int i = 0; i<10000; i++) {
-            NSLog(@"任务五%d",i);
-        }
-    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
-        
-    }];
-    [[AMThreadPool shareInstance] executeTask:^{
-        for (int i = 0; i<10000; i++) {
-            NSLog(@"任务六%d",i);
-        }
-    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
-        
-    }];
-    [[AMThreadPool shareInstance] executeTask:^{
-        for (int i = 0; i<10000; i++) {
-            NSLog(@"任务七%d",i);
-        }
-    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
-        
-    }];
-    [[AMThreadPool shareInstance] executeTask:^{
-        for (int i = 0; i<10000; i++) {
-            NSLog(@"任务八%d",i);
-        }
-    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
-        
-    }];
+//    [[AMThreadPool shareInstance] executeTask:^{
+//        for (int i = 0; i<10000; i++) {
+//            NSLog(@"任务四%d",i);
+//        }
+//    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
+//        
+//    }];
+//    [[AMThreadPool shareInstance] executeTask:^{
+//        for (int i = 0; i<10000; i++) {
+//            NSLog(@"任务五%d",i);
+//        }
+//    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
+//        
+//    }];
+//    [[AMThreadPool shareInstance] executeTask:^{
+//        for (int i = 0; i<10000; i++) {
+//            NSLog(@"任务六%d",i);
+//        }
+//    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
+//        
+//    }];
+//    [[AMThreadPool shareInstance] executeTask:^{
+//        for (int i = 0; i<10000; i++) {
+//            NSLog(@"任务七%d",i);
+//        }
+//    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
+//        
+//    }];
+//    [[AMThreadPool shareInstance] executeTask:^{
+//        for (int i = 0; i<10000; i++) {
+//            NSLog(@"任务八%d",i);
+//        }
+//    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
+//        
+//    }];
+    self.window.rootViewController = [[ViewController alloc]init];
     return YES;
 }
 

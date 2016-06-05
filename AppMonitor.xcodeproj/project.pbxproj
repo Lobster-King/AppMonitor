@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		644B483C1D03E520009BEA1E /* AMFlowDetect.m in Sources */ = {isa = PBXBuildFile; fileRef = 644B483B1D03E520009BEA1E /* AMFlowDetect.m */; };
 		644E5E311D0119860008DCCC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E301D0119860008DCCC /* main.m */; };
 		644E5E341D0119860008DCCC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E331D0119860008DCCC /* AppDelegate.m */; };
 		644E5E371D0119860008DCCC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E361D0119860008DCCC /* ViewController.m */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		644B483A1D03E520009BEA1E /* AMFlowDetect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFlowDetect.h; sourceTree = "<group>"; };
+		644B483B1D03E520009BEA1E /* AMFlowDetect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFlowDetect.m; sourceTree = "<group>"; };
 		644E5E2C1D0119860008DCCC /* AppMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		644E5E301D0119860008DCCC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		644E5E321D0119860008DCCC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -82,6 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		644B48391D03E515009BEA1E /* AMFlowDetect */ = {
+			isa = PBXGroup;
+			children = (
+				644B483A1D03E520009BEA1E /* AMFlowDetect.h */,
+				644B483B1D03E520009BEA1E /* AMFlowDetect.m */,
+			);
+			path = AMFlowDetect;
+			sourceTree = "<group>";
+		};
 		644E5E231D0119860008DCCC = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +117,7 @@
 		644E5E2E1D0119860008DCCC /* AppMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				644B48391D03E515009BEA1E /* AMFlowDetect */,
 				644E5E631D011C8B0008DCCC /* AMThreadPool */,
 				644E5E641D011C8B0008DCCC /* AMQueuePool */,
 				644E5E651D011C8B0008DCCC /* AMNetwork */,
@@ -356,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644B483C1D03E520009BEA1E /* AMFlowDetect.m in Sources */,
 				644E5E371D0119860008DCCC /* ViewController.m in Sources */,
 				644E5E721D0120B00008DCCC /* AMThreadPool.m in Sources */,
 				644E5E341D0119860008DCCC /* AppDelegate.m in Sources */,

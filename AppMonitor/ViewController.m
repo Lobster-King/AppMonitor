@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AMFlowDetect.h"
 
 @interface ViewController ()
 
@@ -16,6 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor blueColor];
+    AMFlowDetect *flowDetect = [AMFlowDetect new];
+    [flowDetect amFlowDetectStart];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
