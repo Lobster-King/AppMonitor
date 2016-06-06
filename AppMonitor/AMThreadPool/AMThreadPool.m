@@ -68,10 +68,15 @@ typedef NS_ENUM(NSInteger,AMThreadPolicy){
     item.policy = priority;
     [_taskPool setObject:item forKey:identity];
     
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        insertNode(_queue, (__bridge void*)item, item.policy, [identity UTF8String]);
+    });
     insertNode(_queue, (__bridge void*)item, item.policy, [identity UTF8String]);
-    insertNode(_queue, (__bridge void*)item, item.policy, [identity UTF8String]);
-    removeNode(_queue, [identity UTF8String]);
-    removeNode(_queue, [identity UTF8String]);
+//    removeNode(_queue, [identity UTF8String]);
+//    
+//    removeNode(_queue, [identity UTF8String]);
+//    removeNode(_queue, [identity UTF8String]);
     
     AMThreadItem *threadItem = idleConditionThreadItem();
     [self performSelector:@selector(executeTask:) onThread:threadItem.threadObj withObject:@[item,threadItem] waitUntilDone:NO];
