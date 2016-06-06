@@ -11,7 +11,6 @@
 		644E5E311D0119860008DCCC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E301D0119860008DCCC /* main.m */; };
 		644E5E341D0119860008DCCC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E331D0119860008DCCC /* AppDelegate.m */; };
 		644E5E371D0119860008DCCC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E361D0119860008DCCC /* ViewController.m */; };
-		644E5E3A1D0119860008DCCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644E5E381D0119860008DCCC /* Main.storyboard */; };
 		644E5E3C1D0119860008DCCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644E5E3B1D0119860008DCCC /* Assets.xcassets */; };
 		644E5E4A1D0119860008DCCC /* AppMonitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E491D0119860008DCCC /* AppMonitorTests.m */; };
 		644E5E551D0119860008DCCC /* AppMonitorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E541D0119860008DCCC /* AppMonitorUITests.m */; };
@@ -45,7 +44,6 @@
 		644E5E331D0119860008DCCC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		644E5E351D0119860008DCCC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		644E5E361D0119860008DCCC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		644E5E391D0119860008DCCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		644E5E3B1D0119860008DCCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		644E5E401D0119860008DCCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		644E5E451D0119860008DCCC /* AppMonitorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppMonitorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,7 +130,6 @@
 				644E5E331D0119860008DCCC /* AppDelegate.m */,
 				644E5E351D0119860008DCCC /* ViewController.h */,
 				644E5E361D0119860008DCCC /* ViewController.m */,
-				644E5E381D0119860008DCCC /* Main.storyboard */,
 				644E5E3B1D0119860008DCCC /* Assets.xcassets */,
 				644E5E401D0119860008DCCC /* Info.plist */,
 				644E5E2F1D0119860008DCCC /* Supporting Files */,
@@ -344,7 +341,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				644E5E3C1D0119860008DCCC /* Assets.xcassets in Resources */,
-				644E5E3A1D0119860008DCCC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,17 +404,6 @@
 			targetProxy = 644E5E511D0119860008DCCC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		644E5E381D0119860008DCCC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				644E5E391D0119860008DCCC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		644E5E571D0119860008DCCC /* Debug */ = {
@@ -512,6 +497,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lobster.AppMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -524,6 +510,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lobster.AppMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
