@@ -75,7 +75,10 @@
 //    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
 //        
 //    }];
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [[ViewController alloc]init];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
