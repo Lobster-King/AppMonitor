@@ -8,6 +8,7 @@
 
 #import "AMThreadPool.h"
 #import "AMTest.h"
+#include "AMSerialQueue.h"
 
 static AMThreadPool *threadPoolInstance = nil;
 static NSInteger const maxMutex = 5;
@@ -52,6 +53,7 @@ typedef NS_ENUM(NSInteger,AMThreadPolicy){
 
 @property (nonatomic,retain)NSMutableDictionary *pool;/*线程池*/
 @property (nonatomic,retain)NSMutableDictionary *taskPool;/*任务池*/
+@property (nonatomic)AMSerialQueue *queue;/*任务队列*/
 @property (nonatomic,strong)dispatch_semaphore_t semaphore;/*信号量*/
 
 @end
@@ -65,6 +67,11 @@ typedef NS_ENUM(NSInteger,AMThreadPolicy){
     item.taskBlock = status;
     item.policy = priority;
     [_taskPool setObject:item forKey:identity];
+    
+    insertNode(_queue, (__bridge void*)item, item.policy, [identity UTF8String]);
+    insertNode(_queue, (__bridge void*)item, item.policy, [identity UTF8String]);
+    removeNode(_queue, [identity UTF8String]);
+    removeNode(_queue, [identity UTF8String]);
     
     AMThreadItem *threadItem = idleConditionThreadItem();
     [self performSelector:@selector(executeTask:) onThread:threadItem.threadObj withObject:@[item,threadItem] waitUntilDone:NO];
@@ -158,6 +165,7 @@ static void AMCreateNonePersistentThread(){
         threadPoolInstance.pool = [NSMutableDictionary dictionaryWithCapacity:maxMutex];
         threadPoolInstance.taskPool = [NSMutableDictionary new];
         threadPoolInstance.semaphore= dispatch_semaphore_create(0);
+        threadPoolInstance.queue    = createQueue();
     });
     return threadPoolInstance;
 }
