@@ -1,35 +1,34 @@
 //
-//  AMSerialQueue.c
+//  AMDispatchQueue.c
 //  AppMonitor
 //
 //  Created by qinzhiwei on 16/6/6.
 //  Copyright © 2016年 AppMonitor. All rights reserved.
 //
 
-#include "AMSerialQueue.h"
+#include "AMDispatchQueue.h"
 #include <stdlib.h>
 
 /*
  设计思路：
  1.实现基本的入队、出队操作
- 2.根据任务的优先级策略实现动态调度&&
- 3.增删改查
+ 2.增删改查
  */
 
 
-int checkIsEmpty(AMSerialQueue *queue);
+int checkIsEmpty(AMDispatchQueue *queue);
 
 /*创建队列*/
-AMSerialQueue* createQueue(){
-    AMSerialQueue *queue;
-    queue = malloc(sizeof(AMSerialQueue));
+AMDispatchQueue* createQueue(){
+    AMDispatchQueue *queue;
+    queue = malloc(sizeof(AMDispatchQueue));
     queue->head = NULL;
     queue->last = NULL;
     return queue;
 }
 
-/*入队*/
-void insertNode(AMSerialQueue *queue,void *item,int priority,const char *identity){
+/*入列*/
+void insertNode(AMDispatchQueue *queue,void *item,int priority,const char *identity){
     QNode *newItem = malloc(sizeof(QNode));
     newItem->qItem = item;
     newItem->pNext = NULL;
@@ -50,7 +49,7 @@ void insertNode(AMSerialQueue *queue,void *item,int priority,const char *identit
 }
 
 /*移除元素*/
-int removeNode(AMSerialQueue *queue,const char *identity){
+int removeNode(AMDispatchQueue *queue,const char *identity){
     QNode *node = queue->head;
     if (!node) {
         return -1;
@@ -80,8 +79,8 @@ int removeNode(AMSerialQueue *queue,const char *identity){
     return -1;
 }
 
-/*出队*/
-void* deQueue(AMSerialQueue *queue){
+/*出列*/
+void* deQueue(AMDispatchQueue *queue){
     if (!queue->head) {
         return NULL;/*空表*/
     }
@@ -94,8 +93,21 @@ void* deQueue(AMSerialQueue *queue){
     return pHead->qItem;
 }
 
-
-
+/*销毁队列*/
+int destroyQueue(AMDispatchQueue *queue){
+    if (!queue) {
+        return -1;
+    }
+    QNode *pHead = queue->head;
+    while (pHead) {
+        QNode *pTemp = pHead;
+        pHead = pHead->pNext;
+        free(pTemp);
+    }
+    queue->head = NULL;
+    queue->last = NULL;
+    return 0;
+}
 
 
 
