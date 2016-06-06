@@ -109,5 +109,18 @@ int destroyQueue(AMDispatchQueue *queue){
     return 0;
 }
 
+int nodeCount(AMDispatchQueue *queue){
+    QNode *pHead = queue->head;
+    if (!pHead) {
+        return -1;
+    }
+    int counter = 0;
+    while (pHead) {
+        pHead++;
+        counter++;
+    }
+    return counter;
+}
+
 
 

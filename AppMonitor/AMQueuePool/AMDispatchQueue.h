@@ -30,8 +30,12 @@ void insertNode(AMDispatchQueue *queue,void *item,int priority,const char *ident
 
 int removeNode(AMDispatchQueue *queue,const char *identity);/*0success -1failed*/
 
+int nodeCount(AMDispatchQueue *queue);
+
 void* deQueue(AMDispatchQueue *queue);
 
 int destroyQueue(AMDispatchQueue *queue);
+
+
 
 
