@@ -8,7 +8,7 @@
 
 #import "AMThreadPool.h"
 #import "AMTest.h"
-#include "AMSerialQueue.h"
+#include "AMDispatchQueue.h"
 
 static AMThreadPool *threadPoolInstance = nil;
 static NSInteger const maxMutex = 5;
@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger,AMThreadPolicy){
 
 @property (nonatomic,retain)NSMutableDictionary *pool;/*线程池*/
 @property (nonatomic,retain)NSMutableDictionary *taskPool;/*任务池*/
-@property (nonatomic)AMSerialQueue *queue;/*任务队列*/
+@property (atomic)AMDispatchQueue *queue;/*任务队列*/
 @property (nonatomic,strong)dispatch_semaphore_t semaphore;/*信号量*/
 
 @end
@@ -68,16 +68,17 @@ typedef NS_ENUM(NSInteger,AMThreadPolicy){
     item.policy = priority;
     [_taskPool setObject:item forKey:identity];
     
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        insertNode(_queue, (__bridge void*)item, item.policy, [identity UTF8String]);
-    });
     insertNode(_queue, (__bridge void*)item, item.policy, [identity UTF8String]);
-//    removeNode(_queue, [identity UTF8String]);
-//    
-//    removeNode(_queue, [identity UTF8String]);
-//    removeNode(_queue, [identity UTF8String]);
+    /*
+    while (1) {
+        AMTaskItem *test = (__bridge AMTaskItem *)(deQueue(_queue));
+        if (!test) {
+            break;
+        }
+        NSLog(@"%@",test.taskId);
+    }
     
+    */
     AMThreadItem *threadItem = idleConditionThreadItem();
     [self performSelector:@selector(executeTask:) onThread:threadItem.threadObj withObject:@[item,threadItem] waitUntilDone:NO];
 }

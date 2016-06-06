@@ -26,27 +26,27 @@
     } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
         
     }];
-//    [[AMThreadPool shareInstance] executeTask:^{
-//        for (int i = 0; i<10000; i++) {
-//            NSLog(@"任务二%d",i);
-//        }
-//    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
-//        
-//    }];
-//    [[AMThreadPool shareInstance] executeTask:^{
-//        for (int i = 0; i<10000; i++) {
-//            NSLog(@"任务三%d",i);
-//        }
-//    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
-//        
-//    }];
-//    [[AMThreadPool shareInstance] executeTask:^{
-//        for (int i = 0; i<10000; i++) {
-//            NSLog(@"任务四%d",i);
-//        }
-//    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
-//        
-//    }];
+    [[AMThreadPool shareInstance] executeTask:^{
+        for (int i = 0; i<10000; i++) {
+            NSLog(@"任务二%d",i);
+        }
+    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
+        
+    }];
+    [[AMThreadPool shareInstance] executeTask:^{
+        for (int i = 0; i<10000; i++) {
+            NSLog(@"任务三%d",i);
+        }
+    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
+        
+    }];
+    [[AMThreadPool shareInstance] executeTask:^{
+        for (int i = 0; i<10000; i++) {
+            NSLog(@"任务四%d",i);
+        }
+    } withId:@"com.lobster.task" priority:AMTaskPriorityDefault taskStatus:^(AMThreadTaskStatus status) {
+
+    }];
 //    [[AMThreadPool shareInstance] executeTask:^{
 //        for (int i = 0; i<10000; i++) {
 //            NSLog(@"任务五%d",i);

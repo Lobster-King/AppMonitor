@@ -15,7 +15,7 @@
 		644E5E4A1D0119860008DCCC /* AppMonitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E491D0119860008DCCC /* AppMonitorTests.m */; };
 		644E5E551D0119860008DCCC /* AppMonitorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E541D0119860008DCCC /* AppMonitorUITests.m */; };
 		644E5E721D0120B00008DCCC /* AMThreadPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 644E5E711D0120B00008DCCC /* AMThreadPool.m */; };
-		64710DD31D05157900144D37 /* AMSerialQueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 64710DD11D05157900144D37 /* AMSerialQueue.c */; };
+		64710DD31D05157900144D37 /* AMDispatchQueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 64710DD11D05157900144D37 /* AMDispatchQueue.c */; };
 		64710DD61D0556CC00144D37 /* AMNetWwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 64710DD51D0556CC00144D37 /* AMNetWwork.m */; };
 		64710DD91D0556DF00144D37 /* AMMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = 64710DD81D0556DF00144D37 /* AMMemory.m */; };
 		64710DDC1D0556E900144D37 /* AMLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 64710DDB1D0556E900144D37 /* AMLog.m */; };
@@ -63,8 +63,8 @@
 		644E5E561D0119860008DCCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		644E5E701D0120B00008DCCC /* AMThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMThreadPool.h; sourceTree = "<group>"; };
 		644E5E711D0120B00008DCCC /* AMThreadPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMThreadPool.m; sourceTree = "<group>"; };
-		64710DD11D05157900144D37 /* AMSerialQueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AMSerialQueue.c; sourceTree = "<group>"; };
-		64710DD21D05157900144D37 /* AMSerialQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialQueue.h; sourceTree = "<group>"; };
+		64710DD11D05157900144D37 /* AMDispatchQueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AMDispatchQueue.c; sourceTree = "<group>"; };
+		64710DD21D05157900144D37 /* AMDispatchQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDispatchQueue.h; sourceTree = "<group>"; };
 		64710DD41D0556CC00144D37 /* AMNetWwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMNetWwork.h; sourceTree = "<group>"; };
 		64710DD51D0556CC00144D37 /* AMNetWwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNetWwork.m; sourceTree = "<group>"; };
 		64710DD71D0556DF00144D37 /* AMMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMemory.h; sourceTree = "<group>"; };
@@ -204,8 +204,8 @@
 		644E5E641D011C8B0008DCCC /* AMQueuePool */ = {
 			isa = PBXGroup;
 			children = (
-				64710DD11D05157900144D37 /* AMSerialQueue.c */,
-				64710DD21D05157900144D37 /* AMSerialQueue.h */,
+				64710DD11D05157900144D37 /* AMDispatchQueue.c */,
+				64710DD21D05157900144D37 /* AMDispatchQueue.h */,
 			);
 			path = AMQueuePool;
 			sourceTree = "<group>";
@@ -414,7 +414,7 @@
 				644E5E371D0119860008DCCC /* ViewController.m in Sources */,
 				644E5E721D0120B00008DCCC /* AMThreadPool.m in Sources */,
 				64710DE51D05570500144D37 /* AMDevice.m in Sources */,
-				64710DD31D05157900144D37 /* AMSerialQueue.c in Sources */,
+				64710DD31D05157900144D37 /* AMDispatchQueue.c in Sources */,
 				64710DE21D0556FC00144D37 /* AMDisk.m in Sources */,
 				64710DDC1D0556E900144D37 /* AMLog.m in Sources */,
 				644E5E341D0119860008DCCC /* AppDelegate.m in Sources */,
